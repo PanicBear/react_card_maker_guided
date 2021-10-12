@@ -20,3 +20,4 @@ class CardRepository {
     remove(ref(this.db, `${userId}/cards/${card.id}`));
   }
 }
+export default CardRepository;
