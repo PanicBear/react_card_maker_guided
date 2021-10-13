@@ -14,6 +14,15 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
 
   const onLogout = () => authService.logout();
   useEffect(() => {
+    if (!userId) {
+      return;
+    };
+    const stopSync = cardRepository.syncCards(userId, cards => {
+      setCards(cards);
+    });
+    return () => stopSync();
+  }, [userId])
+  useEffect(() => {
     authService.onAuthChange((user) => {
       if (user) {
         setUserId(user.uid)
