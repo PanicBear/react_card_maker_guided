@@ -1,8 +1,9 @@
 import { getDatabase, ref, set, remove, onValue, off } from "firebase/database";
+import firebaseApp from "./firebase";
 
 class CardRepository {
-  constructor(app) {
-    this.db = getDatabase(app);
+  constructor() {
+    this.db = getDatabase(firebaseApp);
   }
   // 데이터 읽는 함수
   syncCards(userId, onUpdate) {
